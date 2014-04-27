@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# 2014-04-29T00:41:00+0700
+# Erik Dominikus
+
+# DIR cannot contain space.
+
+set -e
+
+DIR="$(cd $(dirname "$0"); pwd)"
+OUT="/tmp"
+
+cd "$OUT"
+export TEXINPUTS="$DIR:"
+export BIBINPUTS="$DIR:"
+
+WANTAUX=
+WANTBBL=
+
+if [ ! -f "sdp.aux" ] || [ "sdp.aux" -ot "$DIR/sdp.tex" ]; then
+    WANTAUX=1
+fi
+if [ ! -f "sdp.bbl" ] || [ "sdp.bbl" -ot "$DIR/sdp.bib" ]; then
+    WANTBBL=1
+fi
+
+if [ -n "$WANTAUX" ]; then
+    echo '*** sdp.aux out of date; running pdflatex'
+    pdflatex -interaction=batchmode sdp
+fi
+
+if [ -n "$WANTBBL" ]; then
+    echo '*** sdp.bbl out of date; running bibtex'
+    bibtex sdp
+    pdflatex -interaction=batchmode sdp
+fi
+
+if [ -n "$WANTAUX" ]; then
+    echo '*** running pdflatex for the second time to get cross-references right'
+    pdflatex -interaction=batchmode sdp
+    echo "*** the output should be $OUT/sdp.pdf"
+fi

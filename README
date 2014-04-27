@@ -1,0 +1,23 @@
+Theory of Computation (working title)
+2014-04-28T01:04:00+0700
+
+Copyright (c) 2014 Erik Dominikus
+
+Licensed under GPL version 3 or later
+because tikz-cd is licensed under GPL version 3.
+(Can we remove tikz-cd from this distribution
+and use BSD license for the work?)
+
+This work is a draft of a book.
+
+The history of this repository may be rewritten.
+
+To make a PDF from the book, run the provided 'build' script.
+
+If you are using a rather old version of Ubuntu (such as 12)
+and your texlive installation uses the usual Ubuntu package management,
+you may need to install a recent version of PGF/TikZ
+at your local texmf directory (which is usually '~/texmf').
+
+http://mirrors.ctan.org/install/graphics/pgf/base/pgf.tds.zip
+http://mirrors.ctan.org/graphics/pgf/contrib/tikz-cd.zip
