@@ -537,6 +537,53 @@ Almost a topological space?
 
 \chapter{A type-theoretic theory of computation}
 
+\section{Recursive Function over Bitstrings}
+
+Every inhabitant of $\Bit \to \Bit$ is recursive.
+
+Every inhabitant of $\Bit \to \Bit \to \Bit$ is recursive.
+
+For all $a$, the \emph{head} function $f [x 0, x 1, \ldots] = x 0$,
+where $f : \List{a} \to a$, is recursive.
+
+For all $a$, the \emph{tail} function $f [x 0, x 1, \ldots] = [x 1, \ldots]$,
+where $f : \List{a} \to \List{a}$, is recursive.
+
+If $f$ and $g$ are recursive, then so is every
+well-formed typed lambda expression involving $f$ and $g$.
+
+Every well-formed typed lambda expression is recursive?
+
+\section{Fair Coding Scheme}
+
+How to code almost anything into a bit string?
+
+How to code members of type $t$ into bits?
+
+How do we constrain the coding function so that meticulous mathematicians
+cannot cheat by shifting the computation into the coding function?
+
+Let $\mu t : t \to \Nat$ be the \emph{canonical measure} of an element of the countable type $t$.
+
+Let $c t : t \to \Bits$ be the coding function.
+This coding function must be measure-preserving, size-preserving.
+Formally the coding function must satisfy
+\[
+    \mu t x \le \mu t y \iff \mu \Bits (c t x) \le \mu \Bits (c t y)
+\]
+for each $x : t$ and $y : t$.
+
+\begin{figure}[h]
+    \[
+        \begin{tikzcd}
+            x : t \arrow[d, "c t"] \arrow[r, "\mu t"] & \mu t x : \Nat \arrow[r, dotted, "\le"] & \mu t y : \Nat & y : t \arrow[l, "\mu t"] \arrow[d, "c t"]
+            \\
+            c t x : \Bits \arrow[r, "\mu \Bits"] & \mu \Bits (c t x) : \Nat \arrow[r, dotted, "\le"] & \mu \Bits (c t y) : \Nat & c t y : \Bits \arrow[l, "\mu \Bits"]
+        \end{tikzcd}
+    \]
+    \caption{This figure probably contains mistakes}
+\end{figure}
+
 \section{Introduction}
 
 A \emph{configuration} of a machine is a state of that machine at a certain time.
