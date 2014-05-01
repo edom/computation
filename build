@@ -17,7 +17,7 @@ export BIBINPUTS="$DIR:"
 WANTAUX=
 WANTBBL=
 
-if [ ! -f "sdp.aux" ] || [ "sdp.aux" -ot "$DIR/sdp.tex" ]; then
+if [ ! -f "sdp.aux" ] || [ "sdp.aux" -ot "$DIR/sdp.tex" ] || [ "sdp.aux" -ot "$DIR/pricing.tex" ]; then
     WANTAUX=1
 fi
 if [ ! -f "sdp.bbl" ] || [ "sdp.bbl" -ot "$DIR/sdp.bib" ]; then
